@@ -1,18 +1,55 @@
+
 use strict;
 use warnings;
 
-use inc::Module::Install;
 
-name          ('Data-OptList');
-author        ('Ricardo SIGNES <rjbs@cpan.org>');
-license       ('perl');
-version_from  ('lib/Data/OptList.pm');
 
-requires('Sub::Install' => 0.92); # exporter, needed by Data::OptList
-requires('List::Util'   => 0.00); # unknown minimum; used for "first"
-requires('Params::Util' => 0.14); # _HASHLIKE, _ARRAYLIKE, _CODELIKE
+use ExtUtils::MakeMaker 6.30;
 
-repository('http://github.com/rjbs/data-optlist');
-auto_manifest;
 
-WriteAll();
+
+my %WriteMakefileArgs = (
+  'ABSTRACT' => 'parse and validate simple name/value option pairs',
+  'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
+  'BUILD_REQUIRES' => {
+    'Test::More' => '0.96'
+  },
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.30'
+  },
+  'DISTNAME' => 'Data-OptList',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Data::OptList',
+  'PREREQ_PM' => {
+    'List::Util' => '0',
+    'Params::Util' => '0',
+    'Sub::Install' => '0.921'
+  },
+  'VERSION' => '0.107',
+  'test' => {
+    'TESTS' => 't/*.t'
+  }
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+
