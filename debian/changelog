@@ -1,3 +1,33 @@
+libdata-optlist-perl (0.107-1) unstable; urgency=low
+
+  [ Jonathan Yu ]
+  * New upstream release
+  * Standards-Version 3.8.4 (drop perl version dep)
+  * Add myself to Uploaders and Copyright
+  * Rewrite control description
+  * No longer perform Perl::Critic tests
+  * Use new short debhelper 7 rules format
+  * Update copyright to new DEP5 format
+
+  [ Nathan Handler ]
+  * debian/watch: Update to ignore development releases.
+
+  [ Jotam Jr. Trejo ]
+  * New upstream release
+  * debian/copyright: refresh, remove copyright and license for
+    already deleted files (inc/Module/*) and use Debian systems
+    instead of Debian GNU/Linux systems
+  * Switch to Source Format 3.0 (quilt)
+  * Bump Standards Version to 3.9.2
+  * debian/control: add version (>= 0.96) for Test::More dependency
+  * debian/patches/spelling.patch: patch to fix a spelling error
+  * Bump DH compat level to 8
+  * debian/control: remove libtest-pod-coverage-perl and libtest-pod-perl
+    from B-D-I, not planning to run release tests
+  * Add myself to Uploaders and Copyright
+
+ -- Jotam Jr. Trejo <jotamjr@debian.org.sv>  Thu, 12 May 2011 00:48:03 -0600
+
 libdata-optlist-perl (0.104-1) unstable; urgency=low
 
   [ Antonio Radici ]

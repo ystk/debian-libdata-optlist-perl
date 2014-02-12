@@ -8,10 +8,10 @@ These tests test option list cannonization (from an option list into a aref).
 
 =cut
 
+use Data::OptList;
 use Sub::Install;
-use Test::More tests => 19;
+use Test::More 0.88;
 
-BEGIN { use_ok('Data::OptList'); }
 
 # let's get a convenient copy to use:
 Sub::Install::install_sub({
@@ -105,6 +105,17 @@ like($@, qr/HASH-ref values are not/, "exception tossed on invaild ref value");
 eval { OPT([ foo => { a => 1 }, ':bar', 'baz' ], 0, ['ARRAY']); };
 like($@, qr/HASH-ref values are not/, "exception tossed on invaild ref value");
 
+eval {
+  mkopt(
+    [ foo => { a => 1 }, ':bar', 'baz' ],
+    {
+      moniker => 'test',
+      must_be => ['ARRAY'],
+    }
+  );
+};
+like($@, qr/HASH-ref values are not/, "exception tossed on invaild ref value");
+
 eval { OPT([ foo => { a => 1 }, ':bar', 'baz' ], 0, 'Test::DOL::Obj'); };
 like($@, qr/HASH-ref values are not/, "exception tossed on invaild ref value");
 
@@ -125,3 +136,48 @@ is_deeply(
   [ [ foo => { a => 1 } ], [ ':bar' => undef ], [ baz => undef ] ],
   "previously tested expansion OK with require_unique",
 );
+
+# This one is complicated. We defined name values as only non-references (the
+# default) or arrayrefs, so arrayrefs are not turned into values as they
+# usually are.  (The subsequent test shows the default expectation.)
+# -- rjbs, 2011-04-08
+my @input =(
+  foo => { a => 1 },
+  bar => undef,
+  baz =>
+  xyz => [ 1, 2, 3 ],
+);
+
+is_deeply(
+  mkopt(
+    [ @input ],
+    {
+      moniker   => 'test',
+      name_test => sub { ! ref $_[0] or Params::Util::_ARRAYLIKE($_[0]) },
+    },
+  ),
+  [
+    [ foo => { a => 1 } ],
+    [ bar => undef ],
+    [ baz => undef ],
+    [ xyz => undef ],
+    [ [ 1, 2, 3 ], undef ],
+  ],
+);
+
+is_deeply(
+  mkopt(
+    [ @input ],
+    {
+      moniker   => 'test',
+    },
+  ),
+  [
+    [ foo => { a => 1 } ],
+    [ bar => undef ],
+    [ baz => undef ],
+    [ xyz => [ 1, 2, 3 ] ],
+  ],
+);
+
+done_testing;

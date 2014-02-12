@@ -1,25 +1,24 @@
 Source: libdata-optlist-perl
 Section: perl
 Priority: optional
-Build-Depends: debhelper (>= 7)
-Build-Depends-Indep: perl (>= 5.8.0-7), libparams-util-perl (>= 0.14), 
- libsub-install-perl, libtest-pod-perl, libtest-pod-coverage-perl,
- libtest-perl-critic-perl
+Build-Depends: debhelper (>= 8)
+Build-Depends-Indep: perl,
+ libparams-util-perl, libsub-install-perl,
+ libtest-simple-perl (>= 0.96) | perl (>= 5.13.4)
 Maintainer: Debian Perl Group <pkg-perl-maintainers@lists.alioth.debian.org>
 Uploaders: Krzysztof Krzyzaniak (eloy) <eloy@debian.org>, 
- gregor herrmann <gregoa@debian.org>, 
- Antonio Radici <antonio@dyne.org>
-Standards-Version: 3.8.0
+ gregor herrmann <gregoa@debian.org>, Jonathan Yu <jawnsy@cpan.org>,
+ Antonio Radici <antonio@dyne.org>, Jotam Jr. Trejo <jotamjr@debian.org.sv>
+Standards-Version: 3.9.2
 Homepage: http://search.cpan.org/dist/Data-OptList/
 Vcs-Svn: svn://svn.debian.org/pkg-perl/trunk/libdata-optlist-perl/
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-perl/trunk/libdata-optlist-perl/
 
 Package: libdata-optlist-perl
 Architecture: all
-Depends: ${perl:Depends}, ${misc:Depends}, libparams-util-perl (>= 0.14), libsub-install-perl
-Description: Parse and validate simple name/value option pairs
- Hashes are great for storing named data, but if you want more than one entry
- for a name, you have to use a list of pairs.
- .
- Data::OptList make it easy by assuming that any defined scalar is a name and 
- any reference following a name is its value.
+Depends: ${perl:Depends}, ${misc:Depends}, libparams-util-perl,
+ libsub-install-perl
+Description: module to parse and validate simple name/value option pairs
+ Data::OptList is a Perl module useful for working with simple name-and-value
+ option pairs. It assumes any defined scalar is a name and any reference after
+ it is its value.
