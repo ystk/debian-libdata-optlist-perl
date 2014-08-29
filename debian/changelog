@@ -1,3 +1,27 @@
+libdata-optlist-perl (0.109-1) unstable; urgency=low
+
+  [ Ansgar Burchardt ]
+  * debian/control: Convert Vcs-* fields to Git.
+
+  [ Salvatore Bonaccorso ]
+  * Change search.cpan.org based URIs to metacpan.org based URIs
+
+  [ Axel Beckert ]
+  * debian/copyright: migrate pre-1.0 format to 1.0 using "cme fix dpkg-
+    copyright"
+
+  [ Florian Schlichting ]
+  * Import Upstream version 0.108
+  * Bump Standards-Version to 3.9.4 (no change)
+  * Drop spelling.patch, applied upstream
+
+  [ gregor herrmann ]
+  * New upstream release 0.109.
+  * Update years of copyright.
+  * Declare compliance with Debian Policy 3.9.5.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 27 Dec 2013 21:23:01 +0100
+
 libdata-optlist-perl (0.107-1) unstable; urgency=low
 
   [ Jonathan Yu ]

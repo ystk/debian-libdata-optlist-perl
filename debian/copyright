@@ -1,15 +1,15 @@
-Format-Specification: http://svn.debian.org/wsvn/dep/web/deps/dep5.mdwn?op=file&rev=135
-Maintainer: Ricardo Signes <rjbs@cpan.org>
-Source: http://search.cpan.org/dist/Data-OptList/
-Name: Data-OptList
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Data-OptList
+Upstream-Contact: Ricardo Signes <rjbs@cpan.org>
+Source: https://metacpan.org/release/Data-OptList/
 
 Files: *
-Copyright: 2006-2007, Ricardo Signes <rjbs@cpan.org>
+Copyright: 2006, Ricardo Signes <rjbs@cpan.org>
 License: Artistic or GPL-1+
 
 Files: debian/*
 Copyright: 2006-2007, Krzysztof Krzyzaniak (eloy) <eloy@debian.org>
- 2007-2008, gregor herrmann <gregoa@debian.org>
+ 2007-2013, gregor herrmann <gregoa@debian.org>
  2009, Antonio Radici <antonio@dyne.org>
  2010, Jonathan Yu <jawnsy@cpan.org>
  2011, Jotam Jr. Trejo <jotamjr@debian.org.sv>
